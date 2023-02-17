@@ -1,0 +1,20 @@
+Распаковать архкив ReportCard.7z
+
+Установка базы данных
+	1. Скачать и установить СУБД MariaDB версии 10.3 и выше (https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.0.0&os=windows&cpu=x86_64&pkg=zip&m=docker_ru)
+	2. Создать базу данных с помощью скрипта
+		2.1 create_empty.sql - пустая база (Добавлен 1 Сотрудник и 1 Отдел для начального заполнения данными)
+		2.2 create_example.sql - база данных пример
+	3. Создать пользователя для подключения. Примерный скрипт:
+		CREATE USER 'ReportUser'@'%' IDENTIFIED BY PASSWORD 'password';
+		GRANT SELECT, INSERT, DELETE, EXECUTE, SHOW VIEW  ON *.* TO 'ReportUser'@'%';
+		GRANT SELECT, INSERT, UPDATE, DELETE, EXECUTE, SHOW VIEW, EVENT  ON `report`.* TO 'ReportUser'@'%';
+		FLUSH PRIVILEGES;
+	4. Если была создана пустая БД. Нобходимо заполнить таблицы-справочники "calendar и "day_code" вручную и справочники "Департаменты" и "Сотрудники" в интерфейсе ПО
+
+Установка приложения
+	1. Скопировать каталог ReportCard в любую директорию на компьютере
+	2. В файле ReportCard.exe.config в строке подключени <add name="report" connectionString="Server=127.0.0.1;Port=3306;Database=report;Uid=ReportUser;Pwd=ReportUser;" providerName="MySqlConnector" /> заменить 
+		Server=127.0.0.1 на Server=[Ип адрес сервер с БД]
+		Uid=ReportUser; на Uid=[Имя рание созданного пользователя];
+		Pwd=ReportUser на Pwd=[Пароль ранее созданного пользователя]

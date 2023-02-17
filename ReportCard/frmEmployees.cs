@@ -20,8 +20,9 @@ namespace ReportCard
         public frmEmployees()
         {
             InitializeComponent();
+            dgvEmp.AutoGenerateColumns = false;
             //Загружаем данные из БД в GridView
-            bsData.DataSource = EmployeeCRUD.Get();
+            dgvEmp.DataSource = EmployeeCRUD.Get();
         }
 
         private void dgv_SelectionChanged(object sender, EventArgs e)
@@ -65,8 +66,7 @@ namespace ReportCard
                 try
                 {
                     EmployeeCRUD.Remove((int)dgvEmp.SelectedRows[0].Cells["EmpId"].Value);
-                    bsData.DataSource = EmployeeCRUD.Get();
-                    dgvEmp.Update();
+                    dgvEmp.DataSource = EmployeeCRUD.Get();
                 }
                 catch (Exception ex)
                 {
@@ -99,8 +99,7 @@ namespace ReportCard
                     emp.EmpId = (int)dgvEmp.SelectedRows[0].Cells["EmpId"].Value;
                     EmployeeCRUD.Update(emp);
                 }
-                bsData.DataSource = EmployeeCRUD.Get();
-                dgvEmp.Update();
+                dgvEmp.DataSource = EmployeeCRUD.Get();
                 pnlInfo.Visible = false;
                 tsEmp.Visible = true;
                 dgvEmp.Enabled = true;

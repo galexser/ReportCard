@@ -30,9 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsEmp = new System.Windows.Forms.ToolStrip();
             this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -332,7 +330,6 @@
             // 
             this.dgvEmp.AllowUserToAddRows = false;
             this.dgvEmp.AllowUserToDeleteRows = false;
-            this.dgvEmp.AutoGenerateColumns = false;
             this.dgvEmp.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvEmp.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -355,15 +352,14 @@
             this.BirthDay,
             this.Address,
             this.RemoteWork});
-            this.dgvEmp.DataSource = this.bsData;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmp.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmp.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvEmp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmp.Location = new System.Drawing.Point(0, 231);
             this.dgvEmp.MultiSelect = false;
@@ -376,20 +372,14 @@
             this.dgvEmp.TabIndex = 3;
             this.dgvEmp.SelectionChanged += new System.EventHandler(this.dgv_SelectionChanged);
             // 
-            // bsData
-            // 
-            this.bsData.DataSource = typeof(ReportCard.DTOModels.EmployeeDTO);
-            // 
             // EmpId
             // 
             this.EmpId.DataPropertyName = "EmpId";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.EmpId.DefaultCellStyle = dataGridViewCellStyle2;
-            this.EmpId.HeaderText = "Ид.";
+            this.EmpId.HeaderText = "УН";
             this.EmpId.MinimumWidth = 50;
             this.EmpId.Name = "EmpId";
             this.EmpId.ReadOnly = true;
-            this.EmpId.ToolTipText = "Идентификатор";
+            this.EmpId.ToolTipText = "Учетный номер";
             this.EmpId.Width = 50;
             // 
             // DepId
@@ -439,7 +429,7 @@
             // MiddleName
             // 
             this.MiddleName.DataPropertyName = "MiddleName";
-            this.MiddleName.HeaderText = "Отчество";
+            this.MiddleName.HeaderText = "Отчетсво";
             this.MiddleName.MinimumWidth = 150;
             this.MiddleName.Name = "MiddleName";
             this.MiddleName.ReadOnly = true;
@@ -448,12 +438,11 @@
             // BirthDay
             // 
             this.BirthDay.DataPropertyName = "BirthDay";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.BirthDay.DefaultCellStyle = dataGridViewCellStyle3;
             this.BirthDay.HeaderText = "Дата рождения";
-            this.BirthDay.MinimumWidth = 100;
+            this.BirthDay.MinimumWidth = 150;
             this.BirthDay.Name = "BirthDay";
             this.BirthDay.ReadOnly = true;
+            this.BirthDay.Width = 150;
             // 
             // Address
             // 
@@ -468,13 +457,12 @@
             // RemoteWork
             // 
             this.RemoteWork.DataPropertyName = "RemoteWork";
-            this.RemoteWork.HeaderText = "У.р.";
+            this.RemoteWork.HeaderText = "Уд.р.";
             this.RemoteWork.MinimumWidth = 50;
             this.RemoteWork.Name = "RemoteWork";
             this.RemoteWork.ReadOnly = true;
-            this.RemoteWork.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.RemoteWork.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.RemoteWork.ToolTipText = "Удаленная работа";
+            this.RemoteWork.ToolTipText = "Удаленная работ";
+            this.RemoteWork.Width = 50;
             // 
             // frmEmployees
             // 
