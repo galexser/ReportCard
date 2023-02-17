@@ -1,8 +1,8 @@
 <h1 align="center">ReportCard</h1>
 
-<h3>РЎРѕР·РґР°РЅРёРµ Р‘Р”</h3>
+<h3>Создание БД</h3>
 <ol>
- <li>РЈСЃС‚Р°РЅРѕРІРёС‚СЊ <a href="https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.0.0&os=windows&cpu=x86_64&pkg=zip&m=docker_ru">MariaDB</a> РІРµСЂСЃРёРё 10.3 РІС‹С€Рµ</a></li>
- <li>Р’С‚РѕСЂРѕР№ РїСѓРЅРєС‚</li>
- <li>РўСЂРµС‚РёР№ РїСѓРЅРєС‚</li>
+ <li>Установить <a href="https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.0.0&os=windows&cpu=x86_64&pkg=zip&m=docker_ru">MariaDB</a> версии 10.3 выше</a></li>
+ <li>Второй пункт</li>
+ <li>Третий пункт</li>
 </ol>
