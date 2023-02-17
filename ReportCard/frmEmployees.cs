@@ -30,7 +30,7 @@ namespace ReportCard
             tsbEdit.Visible = tsbDel.Visible = dgvEmp.SelectedRows.Count != 0;
         }
 
-        private void tsbAdd_Click(object sender, EventArgs e)
+        private void tsbAddEdit_Click(object sender, EventArgs e)
         {
             IsEdit = ((ToolStripButton)sender).Name.Contains("Edit");
             cbDepartment.DataSource = DepartmentCRUD.Get();
@@ -44,6 +44,7 @@ namespace ReportCard
                 tbPost.Text = row.Cells["Post"].Value.ToString();
                 chbRemoteWork.Checked = row.Cells["RemoteWork"].Value.ToString() == "1";
                 dtpBirthDay.Value = Convert.ToDateTime(row.Cells["BirthDay"].Value.ToString());
+                cbDepartment.SelectedIndex = cbDepartment.FindStringExact(row.Cells["Department"].Value.ToString());
             }
             else
             {

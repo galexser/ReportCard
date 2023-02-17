@@ -10,6 +10,14 @@ namespace ReportCard.CRUD
 {
     public class ReportCRUD
     {
+        /// <summary>
+        /// Возвращает список табелей по департаменту/сотруднику
+        /// </summary>
+        /// <param name="year">Год табеля</param>
+        /// <param name="month">Месяц табеля</param>
+        /// <param name="DepId">Идентификатор отдела</param>
+        /// <param name="EmpId">Идентификатор сотрудника. Если заполнен, то возвращается табель по этому сотруднику</param>
+        /// <returns>Список табелей</returns>
         public static ListReportDTO Get(int year, int month, int DepId, int EmpId = -1)
         {
             ListReportDTO ret = new ListReportDTO() { Month = month, Year = year };
@@ -32,6 +40,11 @@ namespace ReportCard.CRUD
             }
             return ret;
         }
+        /// <summary>
+        /// Возвращает список годов, по которым есть табель по департаменту
+        /// </summary>
+        /// <param name="DepId">Идентификатор департамента</param>
+        /// <returns>Список годов</returns>
         public static List<int> GetYears(int DepId)
         {
             List<int> ret = new List<int>();
@@ -45,20 +58,15 @@ namespace ReportCard.CRUD
                     .OrderByDescending(o => o)
                     .ToList();
             }
-            if (ret.Count == 0)
-                ret.Add(DateTime.Now.Year);
+            if (ret.IndexOf(DateTime.Now.Year) == -1)
+                ret.Insert(0, DateTime.Now.Year);
             return ret;
         }
-        public static ReportDTO GetById(string id)
-        {
-            return new ReportDTO();
-            //ReportDTO ret = null;
-            //using (var db = new ReportDB())
-            //{
-            //    ret = db.Reports.Where(w => w.CodeId == id).Select(s => new ReportDTO(s)).FirstOrDefault();
-            //}
-            //return ret;
-        }
+        /// <summary>
+        /// Добавляет/Редактирует информацию об отметке в табеле
+        /// </summary>
+        /// <param name="rep">Отметка в табеле</param>
+        /// <exception cref="Exception">Ошибка</exception>
         public static void AddOrUpdate(Report rep)
         {
             try
@@ -73,33 +81,17 @@ namespace ReportCard.CRUD
                 throw new Exception(ex.Message);
             }
         }
-        public static void Update(string codeOld, string code, string descr)
+        /// <summary>
+        /// Удаляет информацию об отметке в табеле
+        /// </summary>
+        /// <param name="empid">Идентификатор сотрудника</param>
+        /// <param name="wd">Дата</param>
+        public static void Remove(int empid, DateTime wd)
         {
-            //try
-            //{
-            //    if (GetById(code) == null)
-            //        using (var db = new ReportDB())
-            //        {
-            //            db.Reports
-            //                .Where(w => w.CodeId == codeOld)
-            //                .Set(p => p.CodeId, code)
-            //                .Set(p => p.Name, descr)
-            //                .Update();
-            //        }
-            //    else
-            //        throw new Exception("Дублирование кода");
-            //}
-            //catch (MySqlException ex)
-            //{
-            //    throw new Exception(ex.Message);
-            //}
-        }
-        public static void Remove(string code)
-        {
-            //using (var db = new ReportDB())
-            //{
-            //    db.Reports.Where(w => w.CodeId == code).Delete();
-            //}
+            using (var db = new ReportDB())
+            {
+                db.Reports.Where(w => w.WorkDate == wd && w.EmpID == empid).Delete();
+            }
         }
     }
 }

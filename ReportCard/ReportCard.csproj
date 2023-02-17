@@ -120,7 +120,6 @@
     <Compile Include="frmDepartments.Designer.cs">
       <DependentUpon>frmDepartments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper\DBhelper.cs" />
     <Compile Include="DTOModels\CalendarDTO.cs" />
     <Compile Include="DTOModels\DayCodeDTO.cs" />
     <Compile Include="DTOModels\DepartmentDTO.cs" />
@@ -132,8 +131,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Report.tt</DependentUpon>
     </Compile>
-    <Compile Include="MV\DayCodeVM.cs" />
-    <Compile Include="MV\DepartmentsMV.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddDayCode.resx">
@@ -178,7 +175,6 @@
     <None Include="LinqToDB.Templates\T4Model.ttinclude" />
     <None Include="LinqToDB.Templates\Validation.ttinclude" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\ReportCard.DTOModels.DepartmentDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -211,7 +207,6 @@
     <None Include="Resources\user_edit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Helper\CopyMe.MySqlConnector.tt.txt" />
     <Content Include="Helper\Report.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Report.generated.cs</LastGenOutput>

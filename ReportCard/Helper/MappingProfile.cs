@@ -4,6 +4,9 @@ using ReportCard.DTOModels;
 
 namespace ReportCard.Helper
 {
+    /// <summary>
+    /// Профили конвертации данных для AutoMapper из БД в DTO и обратно
+    /// </summary>
     internal class MappingProfile : Profile
     {
         public MappingProfile()

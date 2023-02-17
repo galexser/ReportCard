@@ -10,6 +10,12 @@ namespace ReportCard.CRUD
 {
     public class CalendarCRUD
     {
+        /// <summary>
+        /// Получение производственного календаря на месяц года
+        /// </summary>
+        /// <param name="year">Год</param>
+        /// <param name="month">Месяц</param>
+        /// <returns>Список праздничных выходных, предпраздничных и рабочих выходных дней</returns>
         public static List<CalendarDTO> Get(int year, int month)
         {
             List<CalendarDTO> ret = new List<CalendarDTO>();

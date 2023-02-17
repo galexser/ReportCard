@@ -16,8 +16,6 @@ namespace ReportCard
 {
     public partial class frmDepartments : Form
     {
-        DataSet myDS;
-        MySqlDataAdapter myDA;
         bool IsEdit = false;
         public frmDepartments()
         {
@@ -30,6 +28,8 @@ namespace ReportCard
         {
             //Отображаем кнопки редактирования и удаления, если выбрана строка
             tsbEdit.Visible = tsbDel.Visible = dgvDep.SelectedRows.Count != 0;
+            if (dgvDep.SelectedRows[0].Cells["DepId"].Value.ToString() == "1")
+                tsbDel.Visible = false;
         }
         private void tsbAddEdit_Click(object sender, EventArgs e)
         {

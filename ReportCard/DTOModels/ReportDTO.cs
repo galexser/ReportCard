@@ -5,11 +5,27 @@ using System.Linq;
 
 namespace ReportCard.DTOModels
 {
+    /// <summary>
+    /// Модель Производственный календарь
+    /// </summary>
     public class ListReportDTO
     {
+        /// <summary>
+        /// Год календаря
+        /// </summary>
         public int Year { get; set; }
+        /// <summary>
+        /// Месяц календаря
+        /// </summary>
         public int Month { get; set; }
+        /// <summary>
+        /// Список учета рабочего времени по сотрудникам
+        /// </summary>
         public List<ReportDTO> Reports { get; set; } = new List<ReportDTO>();
+        /// <summary>
+        /// Преобразование в DataTable
+        /// </summary>
+        /// <returns>Данные ввиде таблицы</returns>
         public DataTable GetDataTable()
         {
             DataTable ret = new DataTable();
@@ -32,32 +48,33 @@ namespace ReportCard.DTOModels
                 });
                 ret.Rows.Add(row);
             });
-            //    .GroupBy(g => new { g.EmpId, g.FIO, g.Post })
-            //    .Select(s => new { emp = s.Key, data = s.Select(x => x) })
-            //    .ToList()
-            //    .ForEach(emp =>
-            //    {
-            //        var row = ret.NewRow();
-            //        row.SetField<int>("EmpId", emp.emp.EmpId);
-            //        row.SetField<string>("FIO", emp.emp.FIO);
-            //        row.SetField<string>("Post", emp.emp.Post);
-            //        emp.data.ToList().ForEach(d =>
-            //        {
-            //            row.SetField<string>($"d{d.WorkDate.Day}", d.DayCode);
-            //        });
-            //    });
             return ret;
         }
     }
+    /// <summary>
+    /// Модель Учет рабочего времени сотрудника
+    /// </summary>
     public class ReportDTO
     {
+        /// <summary>
+        /// Идентификатор сотрудника
+        /// </summary>
         public int EmpId { get; set; }
+        /// <summary>
+        /// ФИО сотрудника
+        /// </summary>
         public string FIO { get; set; }
+        /// <summary>
+        /// Должность сотрудника
+        /// </summary>
         public string Post { get; set; }
+        /// <summary>
+        /// Список Кодировок дней
+        /// </summary>
         public List<WorkDay> WorkDays { get; set; }
-        //public DateTime WorkDate { get; set; }
-        //public string DayCode { get; set; }
-        //public string Description { get; set; }
+        /// <summary>
+        /// Модель Кодировка дня
+        /// </summary>
         public class WorkDay
         {
             public DateTime WDay { get; set; }

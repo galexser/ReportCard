@@ -47,8 +47,11 @@ namespace ReportCard.CRUD
         /// </summary>
         /// <param name="name">Наименование</param>
         /// <param name="id">Идентификатор редактируемого департамента</param>
-        /// <returns>true - есть дубликат, false - нет дубликата</returns>
-        static bool CheckByFIO(string name, int id = -1)
+        /// <returns>
+        ///     true - есть дубликат<br/>
+        ///     false - нет дубликата
+        /// </returns>
+        static bool CheckByName(string name, int id = -1)
         {
             bool ret = false;
             using (var db = new ReportDB())
@@ -69,7 +72,7 @@ namespace ReportCard.CRUD
         {
             try
             {
-                if (!CheckByFIO(name))
+                if (!CheckByName(name))
                     using (var db = new ReportDB())
                     {
                         db.Insert(new Department() { Name = name });
@@ -91,7 +94,7 @@ namespace ReportCard.CRUD
         {
             try
             {
-                if (!CheckByFIO(dep.Name, dep.DepId))
+                if (!CheckByName(dep.Name, dep.DepId))
                     using (var db = new ReportDB())
                     {
                         db.Update(Program.MyMapper.Map<Department>(dep));

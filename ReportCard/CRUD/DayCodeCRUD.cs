@@ -10,6 +10,10 @@ namespace ReportCard.CRUD
 {
     public class DayCodeCRUD
     {
+        /// <summary>
+        /// Получение списка кодировок
+        /// </summary>
+        /// <returns>Список кодировок</returns>
         public static List<DayCodeDTO> Get()
         {
             List<DayCodeDTO> ret = new List<DayCodeDTO>();

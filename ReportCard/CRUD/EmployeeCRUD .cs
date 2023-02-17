@@ -47,7 +47,10 @@ namespace ReportCard.CRUD
         /// <param name="firstname">Имя</param>
         /// <param name="middlename">Отчество</param>
         /// <param name="birthday">Дата рождения</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     true - сотрудник найден<br/>
+        ///     false - сотрудник не найден
+        /// </returns>
         static bool CheckByFIO(string lastname, string firstname, string middlename, DateTime birthday, int id = -1)
         {
             bool ret = false;
