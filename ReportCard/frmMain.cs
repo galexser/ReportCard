@@ -142,7 +142,8 @@ namespace ReportCard
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 column.MinimumWidth = 20;
                 //Привязывем контекстное меню
-                column.ContextMenuStrip = cms;
+                if (canChangeReportCard)
+                    column.ContextMenuStrip = cms;
                 #region Разукрашиваем в зависимости от дня недели и праздников
                 var day = new DateTime(selectYear, selectMonth, Convert.ToInt32(column.HeaderText));
                 var c = calendar.FirstOrDefault(f => f.HDay == day);
@@ -216,14 +217,14 @@ namespace ReportCard
                 else
                 {
                     if (ms.Visible)
-                        if(MessageBox.Show("Не заполнен обязательные справочник Кодировки дней. Хотите заполнить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        if (MessageBox.Show("Не заполнен обязательные справочник Кодировки дней. Хотите заполнить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
                             var frmdc = new frmDayCodes();
                             frmdc.Owner = this;
                             frmdc.ShowDialog();
                         }
-                    else
-                        MessageBox.Show("Не заполнен обязательные справочник Кодировки дней. Обратитесь к ответственому", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else
+                            MessageBox.Show("Не заполнен обязательные справочник Кодировки дней. Обратитесь к ответственому", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
@@ -262,8 +263,7 @@ namespace ReportCard
             }
         }
 
-        #endregion
 
-        
+        #endregion
     }
 }
