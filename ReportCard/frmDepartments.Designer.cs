@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsDep = new System.Windows.Forms.ToolStrip();
             this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -41,14 +40,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.tbName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvDep = new System.Windows.Forms.DataGridView();
-            this.bsDep = new System.Windows.Forms.BindingSource(this.components);
-            this.DepId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DepId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDep = new System.Windows.Forms.DataGridView();
             this.tsDep.SuspendLayout();
             this.pnlInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDep)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDep)).BeginInit();
             this.SuspendLayout();
             // 
             // tsDep
@@ -155,7 +152,6 @@
             // 
             this.dgvDep.AllowUserToAddRows = false;
             this.dgvDep.AllowUserToDeleteRows = false;
-            this.dgvDep.AutoGenerateColumns = false;
             this.dgvDep.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -169,7 +165,6 @@
             this.dgvDep.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DepId,
             this.name});
-            this.dgvDep.DataSource = this.bsDep;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -190,9 +185,13 @@
             this.dgvDep.TabIndex = 3;
             this.dgvDep.SelectionChanged += new System.EventHandler(this.dgv_SelectionChanged);
             // 
-            // bsDep
+            // name
             // 
-            this.bsDep.DataSource = typeof(ReportCard.DTOModels.DepartmentDTO);
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.name.DataPropertyName = "Name";
+            this.name.HeaderText = "Наименование";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
             // 
             // DepId
             // 
@@ -203,14 +202,6 @@
             this.DepId.Name = "DepId";
             this.DepId.ReadOnly = true;
             this.DepId.ToolTipText = "Идентификатор";
-            // 
-            // name
-            // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.name.DataPropertyName = "Name";
-            this.name.HeaderText = "Наименование";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
             // 
             // frmDepartments
             // 
@@ -235,7 +226,6 @@
             this.pnlInfo.ResumeLayout(false);
             this.pnlInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDep)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDep)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,7 +242,6 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvDep;
-        private System.Windows.Forms.BindingSource bsDep;
         private System.Windows.Forms.DataGridViewTextBoxColumn DepId;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
     }

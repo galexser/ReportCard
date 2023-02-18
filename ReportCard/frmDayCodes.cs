@@ -14,43 +14,48 @@ using System.Windows.Forms;
 
 namespace ReportCard
 {
-    public partial class frmDepartments : Form
+    public partial class frmDayCodes : Form
     {
         bool IsEdit = false;
-        public frmDepartments()
+        public frmDayCodes()
         {
             InitializeComponent();
             //Загружаем данные из БД в GridView
-            dgvDep.DataSource = DepartmentCRUD.Get();
+            dgv.DataSource = DayCodeCRUD.Get();
         }
 
         private void dgv_SelectionChanged(object sender, EventArgs e)
         {
             //Отображаем кнопки редактирования и удаления, если выбрана строка
-            tsbEdit.Visible = tsbDel.Visible = dgvDep.SelectedRows.Count != 0;
-            if (dgvDep.SelectedRows.Count != 0 && dgvDep.SelectedRows[0].Cells["DepId"].Value.ToString() == "1")
-                tsbDel.Visible = false;
+            tsbEdit.Visible = tsbDel.Visible = dgv.SelectedRows.Count != 0;
         }
         private void tsbAddEdit_Click(object sender, EventArgs e)
         {
             IsEdit = ((ToolStripButton)sender).Name.Contains("Edit");
+            
             if (IsEdit)
-                tbName.Text = dgvDep.SelectedRows[0].Cells["name"].Value.ToString();
+            {
+                tbCode.Text = dgv.SelectedRows[0].Cells["CodeId"].Value.ToString();
+                tbName.Text = dgv.SelectedRows[0].Cells["Descr"].Value.ToString();
+            }
             else
+            {
+                tbCode.Text = "";
                 tbName.Text = "";
+            }
             pnlInfo.Visible = true;
-            tsDep.Visible = false;
-            dgvDep.Enabled = false;
+            tsMenu.Visible = false;
+            dgv.Enabled = false;
         }
-        
+
         private void tsbDel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы действительно хотите удалить выбранный департамент?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Вы действительно хотите удалить выбранную кодировку?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
-                    DepartmentCRUD.Remove((int)dgvDep.SelectedRows[0].Cells["DepId"].Value);
-                    dgvDep.DataSource = DepartmentCRUD.Get();
+                    DayCodeCRUD.Remove(dgv.SelectedRows[0].Cells["CodeId"].Value.ToString());
+                    dgv.DataSource = DayCodeCRUD.Get();
                 }
                 catch (Exception ex)
                 {
@@ -64,16 +69,17 @@ namespace ReportCard
         {
             try
             {
-                if (!IsEdit)
-                    DepartmentCRUD.Add(tbName.Text);
-                else
+                if (tbCode.TextLength == 0)
                 {
-                    DepartmentCRUD.Update(new DepartmentDTO() { DepId = (int)dgvDep.SelectedRows[0].Cells["DepId"].Value , Name = tbName.Text});
+                    MessageBox.Show("Поле Код не должно быть пустым", (IsEdit ? "Редактирование" : "Добавление"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                dgvDep.DataSource = DepartmentCRUD.Get();
+                DayCodeCRUD.AddOrUpdate(new DayCodeDTO() { CodeId = tbCode.Text, Description = tbName.Text }, (IsEdit ? dgv.SelectedRows[0].Cells["CodeId"].Value.ToString() : ""));
+
+                dgv.DataSource = DayCodeCRUD.Get();
                 pnlInfo.Visible = false;
-                tsDep.Visible = true;
-                dgvDep.Enabled = true;
+                tsMenu.Visible = true;
+                dgv.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -84,10 +90,10 @@ namespace ReportCard
         private void btnCancel_Click(object sender, EventArgs e)
         {
             pnlInfo.Visible = false;
-            tsDep.Visible = true;
-            dgvDep.Enabled = true;
+            tsMenu.Visible = true;
+            dgv.Enabled = true;
         }
 
-        
+
     }
 }

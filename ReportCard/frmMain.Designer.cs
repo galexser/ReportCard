@@ -35,6 +35,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmiCatalog = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCalendar = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDayCodes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDepartment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEmployees = new System.Windows.Forms.ToolStripMenuItem();
             this.gbDep = new System.Windows.Forms.GroupBox();
@@ -78,27 +81,51 @@
             // 
             this.ms.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiDepartment,
-            this.tsmiEmployees});
+            this.tsmiCatalog});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
-            this.ms.Size = new System.Drawing.Size(1008, 25);
+            this.ms.Size = new System.Drawing.Size(1008, 27);
             this.ms.TabIndex = 0;
             this.ms.Text = "menuStrip1";
             this.ms.Visible = false;
             // 
+            // tsmiCatalog
+            // 
+            this.tsmiCatalog.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDayCodes,
+            this.tsmiDepartment,
+            this.tsmiCalendar,
+            this.tsmiEmployees});
+            this.tsmiCatalog.Name = "tsmiCatalog";
+            this.tsmiCatalog.Size = new System.Drawing.Size(114, 23);
+            this.tsmiCatalog.Text = "Справочники";
+            // 
+            // tsmiCalendar
+            // 
+            this.tsmiCalendar.Name = "tsmiCalendar";
+            this.tsmiCalendar.Size = new System.Drawing.Size(283, 24);
+            this.tsmiCalendar.Text = "Производственный календарь";
+            this.tsmiCalendar.Click += new System.EventHandler(this.tsmiCalendar_Click);
+            // 
+            // tsmiDayCodes
+            // 
+            this.tsmiDayCodes.Name = "tsmiDayCodes";
+            this.tsmiDayCodes.Size = new System.Drawing.Size(283, 24);
+            this.tsmiDayCodes.Text = "Кодировки дней";
+            this.tsmiDayCodes.Click += new System.EventHandler(this.tsmiDayCodes_Click);
+            // 
             // tsmiDepartment
             // 
             this.tsmiDepartment.Name = "tsmiDepartment";
-            this.tsmiDepartment.Size = new System.Drawing.Size(163, 21);
-            this.tsmiDepartment.Text = "Справочник отделов";
+            this.tsmiDepartment.Size = new System.Drawing.Size(283, 24);
+            this.tsmiDepartment.Text = "Отделы";
             this.tsmiDepartment.Click += new System.EventHandler(this.tsmiDepartment_Click);
             // 
             // tsmiEmployees
             // 
             this.tsmiEmployees.Name = "tsmiEmployees";
-            this.tsmiEmployees.Size = new System.Drawing.Size(193, 21);
-            this.tsmiEmployees.Text = "Справочник сотрудников";
+            this.tsmiEmployees.Size = new System.Drawing.Size(283, 24);
+            this.tsmiEmployees.Text = "Сотрудники";
             this.tsmiEmployees.Click += new System.EventHandler(this.tsmiEmployees_Click);
             // 
             // gbDep
@@ -460,8 +487,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip ms;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDepartment;
-        private System.Windows.Forms.ToolStripMenuItem tsmiEmployees;
         private System.Windows.Forms.GroupBox gbDep;
         private System.Windows.Forms.ListBox lbDep;
         private System.Windows.Forms.SplitContainer sc;
@@ -486,6 +511,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;
         private System.Windows.Forms.DataGridViewTextBoxColumn FIO;
         private System.Windows.Forms.DataGridViewTextBoxColumn Post;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCatalog;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDepartment;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEmployees;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDayCodes;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCalendar;
     }
 }
 

@@ -53,7 +53,12 @@ namespace ReportCard
             lbDep.SelectedIndex = 0;
         }
         #endregion
-
+        private void tsmiCalendar_Click(object sender, EventArgs e)
+        {
+            var frm = new frmCalendars();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
         private void tsmiDepartment_Click(object sender, EventArgs e)
         {
             var frm = new frmDepartments();
@@ -63,6 +68,12 @@ namespace ReportCard
         private void tsmiEmployees_Click(object sender, EventArgs e)
         {
             var frm = new frmEmployees();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
+        private void tsmiDayCodes_Click(object sender, EventArgs e)
+        {
+            var frm = new frmDayCodes();
             frm.Owner = this;
             frm.ShowDialog();
         }
@@ -195,9 +206,25 @@ namespace ReportCard
                 canChangeReportCard = sEmp.Post == "Табельщик" && sEmp.DepId == 1;
                 //Для специалистов Отдела кадров открываем возможность редактировать справочники
                 ms.Visible = sEmp.DepId == 1;
-                //Загружаем информацию об отделах
-                LoadDepartment();
-                sc.Visible = true;
+
+                if (DayCodeCRUD.Get().Count > 0)
+                {
+                    //Загружаем информацию об отделах
+                    LoadDepartment();
+                    sc.Visible = true;
+                }
+                else
+                {
+                    if (ms.Visible)
+                        if(MessageBox.Show("Не заполнен обязательные справочник Кодировки дней. Хотите заполнить?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            var frmdc = new frmDayCodes();
+                            frmdc.Owner = this;
+                            frmdc.ShowDialog();
+                        }
+                    else
+                        MessageBox.Show("Не заполнен обязательные справочник Кодировки дней. Обратитесь к ответственому", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
                 Close();
@@ -234,6 +261,9 @@ namespace ReportCard
                 ReportCRUD.Remove((int)dgvRC.Rows[clickedCell.RowIndex].Cells["EmpId"].Value, new DateTime(selectYear, selectMonth, Convert.ToInt32(dgvRC.Columns[clickedCell.ColumnIndex].Name.Trim('d'))));
             }
         }
+
         #endregion
+
+        
     }
 }

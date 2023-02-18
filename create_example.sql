@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Хост:                         127.0.0.1
--- Версия сервера:               10.3.38-MariaDB - mariadb.org binary distribution
+-- Версия сервера:               10.10.3-MariaDB - mariadb.org binary distribution
 -- Операционная система:         Win64
 -- HeidiSQL Версия:              11.3.0.6295
 -- --------------------------------------------------------
@@ -26,9 +26,31 @@ CREATE TABLE IF NOT EXISTS `calendar` (
   PRIMARY KEY (`HDay`)
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_ci;
 
--- Дамп данных таблицы report.calendar: ~20 rows (приблизительно)
+-- Дамп данных таблицы report.calendar: ~42 rows (приблизительно)
 /*!40000 ALTER TABLE `calendar` DISABLE KEYS */;
 REPLACE INTO `calendar` (`HDay`, `Day_type`) VALUES
+	('2022-01-01', 1),
+	('2022-01-02', 1),
+	('2022-01-03', 1),
+	('2022-01-04', 1),
+	('2022-01-05', 1),
+	('2022-01-06', 1),
+	('2022-01-07', 1),
+	('2022-01-08', 1),
+	('2022-02-22', 2),
+	('2022-02-23', 1),
+	('2022-03-05', 2),
+	('2022-03-07', 1),
+	('2022-03-08', 1),
+	('2022-05-01', 1),
+	('2022-05-02', 1),
+	('2022-05-03', 1),
+	('2022-05-09', 1),
+	('2022-05-10', 1),
+	('2022-06-12', 1),
+	('2022-06-13', 1),
+	('2022-11-03', 2),
+	('2022-11-04', 1),
 	('2023-01-01', 1),
 	('2023-01-02', 1),
 	('2023-01-03', 1),
@@ -40,7 +62,6 @@ REPLACE INTO `calendar` (`HDay`, `Day_type`) VALUES
 	('2023-02-22', 2),
 	('2023-02-23', 1),
 	('2023-02-24', 1),
-	('2023-02-26', 3),
 	('2023-03-07', 2),
 	('2023-03-08', 1),
 	('2023-05-01', 1),
@@ -112,11 +133,11 @@ CREATE TABLE IF NOT EXISTS `employees` (
   CONSTRAINT `fk_emp_dep` FOREIGN KEY (`DepId`) REFERENCES `departments` (`DepId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_ci;
 
--- Дамп данных таблицы report.employees: ~2 rows (приблизительно)
+-- Дамп данных таблицы report.employees: ~5 rows (приблизительно)
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
 REPLACE INTO `employees` (`EmpID`, `LastName`, `FirstName`, `MiddleName`, `BirthDay`, `Post`, `Address`, `RemoteWork`, `DepId`) VALUES
 	(1, 'Гордин', 'Алексей', 'Сергеевич', '1987-03-27', 'Разработчик', 'г. Барнаул, ул. Г.Исакова, д.183', 1, 3),
-	(2, 'Иванов', 'Иван', 'Иванович', '1993-02-15', 'Табельщик', 'г. Барнаул, ул. Малахова, д. 74', 0, 5),
+	(2, 'Иванов', 'Иван', 'Иванович', '1993-02-15', 'Табельщик', 'г. Барнаул, ул. Малахова, д. 74', 0, 1),
 	(5, 'Петров', 'Петр', 'Петрович', '1983-09-25', 'Начальник отдела', 'г. Барнаул, ул. Петрова, д. 196', 0, 1),
 	(6, 'Павлов', 'Павел', 'Павлович', '1973-05-10', 'Табельщик', 'г. Барнаул, ул. Павловский тракт, д. 100', 0, 1),
 	(7, 'Федоров', 'Федор', 'Федорович', '1980-04-30', 'Тестировщик', 'г. Барнаул, ул. Партизанская, д. 90', 0, 3);
@@ -132,18 +153,19 @@ CREATE TABLE IF NOT EXISTS `report` (
   KEY `fk_r_dc_idx` (`CodeId`),
   KEY `fk_r_emp_idx` (`EmpID`),
   KEY `fk_r_caleendar_idx` (`WorkDate`) USING BTREE,
-  CONSTRAINT `fk_r_dc` FOREIGN KEY (`CodeId`) REFERENCES `day_code` (`CodeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_r_dc` FOREIGN KEY (`CodeId`) REFERENCES `day_code` (`CodeId`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `fk_r_emp` FOREIGN KEY (`EmpID`) REFERENCES `employees` (`EmpID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_general_ci;
 
--- Дамп данных таблицы report.report: ~1 rows (приблизительно)
+-- Дамп данных таблицы report.report: ~7 rows (приблизительно)
 /*!40000 ALTER TABLE `report` DISABLE KEYS */;
 REPLACE INTO `report` (`EmpID`, `WorkDate`, `CodeId`) VALUES
 	(1, '2023-02-17', 'Б'),
 	(1, '2023-01-08', 'В'),
 	(1, '2023-02-01', 'В'),
-	(2, '2023-02-10', 'Ож'),
+	(5, '2023-01-11', 'ОТ'),
 	(1, '0001-01-01', 'Рв'),
+	(5, '2023-01-05', 'Рв'),
 	(1, '2023-01-17', 'Я');
 /*!40000 ALTER TABLE `report` ENABLE KEYS */;
 
