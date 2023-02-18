@@ -5,8 +5,8 @@
 	<li>Установить <a href="https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.0.0&os=windows&cpu=x86_64&pkg=zip&m=docker_ru">MariaDB</a> версии 10.3 выше</a></li>
 	<li>Создать базу данных с помощью скрипта
 		<ol type="1">
-			<li>create_empty.sql - пустая база (Добавлен 1 Сотрудник и 1 Отдел для начального заполнения данными)</li>
-			<li>create_example.sql - база данных пример</li>
+			<li>For_Instal\create_empty.sql - пустая база (Добавлен 1 Сотрудник и 1 Отдел для начального заполнения данными)</li>
+			<li>For_Instal\create_example.sql - база данных пример</li>
 		</ol>
 	</li>
 	<li>Создать пользователя для подключения. Примерный скрипт:
@@ -22,7 +22,7 @@ FLUSH PRIVILEGES;
 
 <h3>Установка приложения</h3>
 <ol>
-	<li>Скопировать каталог ReportCard в любую директорию на компьютере</li>
+	<li>Скопировать каталог For_Instal\ReportCard в любую директорию на компьютере</li>
 	<li>В файле ReportCard.exe.config в строке подключени <add name="report" connectionString="Server=127.0.0.1;Port=3306;Database=report;Uid=ReportUser;Pwd=ReportUser;" providerName="MySqlConnector" /> 
 	<code>
 	Server=<b>127.0.0.1</b> на Server=<b>[Ип адрес сервер с БД]</b>
@@ -31,3 +31,7 @@ FLUSH PRIVILEGES;
 	</code>
 	</li>
 </ol>
+
+<h3>Схема БД и описание</h3>
+
+Docs\Схема БД.docx
